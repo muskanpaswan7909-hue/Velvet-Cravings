@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Velvet Cravings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<header>
+    <h1 class="logo">VELVET CRAVINGS</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="nav-menu">
+        <a href="index.html"><span class="nav-icon">🏠</span>Home</a>
+        <a href="cakes.html"><span class="nav-icon">🎂</span>Cakes</a>
+        <a href="pastries.html"><span class="nav-icon">🧁</span>Pastries</a>
+        <a href="childs-corner.html"><span class="nav-icon">🧸</span>Child's Corner</a>
+        <a href="order.html"><span class="nav-icon">📝</span>Checkout</a>
+        <a href="about.html"><span class="nav-icon">⭐</span>About</a>
+    </nav>
+</header>
+
+<h2 class="title">About Velvet Cravings</h2>
+
+<div class="about-box">
+    <p>
+        Welcome to <strong>Velvet Cravings</strong>, your ultimate destination for exquisite cakes, delectable pastries, and unforgettable celebrations. At Velvet Cravings, we believe that every cake is not just a dessert but a work of art, crafted with passion, precision, and love. Our journey began with a simple idea – to create sweet moments that bring people together and make every occasion truly special. Over the years, we have grown into a trusted bakery brand, renowned for our creativity, quality, and commitment to delighting our customers.
+    </p>
+
+    <p>
+        Our bakery specializes in a wide variety of cakes to suit every taste and preference. From classic favorites like Chocolate Truffle, Black Forest, and Red Velvet, to innovative designer cakes inspired by modern trends and international flavors, we have something for everyone.
+    </p>
+
+    <p>
+        At Velvet Cravings, we understand that birthdays, anniversaries, weddings, and festive occasions deserve more than just ordinary desserts. From classic favorites like Butterscotch Pastries, Strawberry Cream, and Oreo Pastries, to seasonal specials and innovative creations, our pastries are crafted to delight both the eyes and taste buds. Each piece is freshly baked and perfectly portioned, making them ideal for gifting, sharing at parties, or enjoying as a personal indulgence.
+    </p>
+
+    <p>
+        At Velvet Cravings, we firmly believe that quality and freshness should never be compromised, and every product we serve is a testament to our commitment to excellence.
+    </p>
+</div>
+
+<footer>
+    <p>&copy; 2026 Velvet Cravings. All rights reserved.</p>
+</footer>
+
+<script src="cart.js"></script>
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('nav-menu');
+        nav.classList.toggle('show');
+    }
+
+    gsap.from(".about-box", { y: 50, opacity: 0, duration: 1.2, ease: "power3.out" });
+    gsap.from(".title", { scale: 0.8, opacity: 0, duration: 1, ease: "back.out(1.7)" });
+</script>
+</body>
+</html>

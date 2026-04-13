@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Velvet Cravings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        .orders-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .order-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+        .order-card:hover {
+            transform: translateY(-5px);
+        }
+        .order-info h3 {
+            color: #d63384;
+            margin-bottom: 5px;
+        }
+        .order-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 2px 0;
+        }
+        .empty-orders {
+            text-align: center;
+            padding: 50px;
+            background: white;
+            border-radius: 15px;
+        }
+        .order-id {
+            color: #888;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 class="logo">VELVET CRAVINGS</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="nav-menu">
+        <a href="index.html"><span class="nav-icon">🏠</span>Home</a>
+        <a href="cakes.html"><span class="nav-icon">🎂</span>Cakes</a>
+        <a href="pastries.html"><span class="nav-icon">🧁</span>Pastries</a>
+        <a href="childs-corner.html"><span class="nav-icon">🧸</span>Child's Corner</a>
+        <a href="order.html"><span class="nav-icon">📝</span>Checkout</a>
+        <a href="about.html"><span class="nav-icon">⭐</span>About</a>
+    </nav>
+</header>
+
+<div class="orders-container">
+    <h2 class="title" style="text-align: left; margin-bottom: 30px;">My Order History 🛍️</h2>
+    <div id="orders-list">
+        <p style="text-align: center; color: #666;">Loading your orders...</p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Velvet Cravings. All rights reserved.</p>
+</footer>
+
+<script src="cart.js"></script>
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('nav-menu');
+        nav.classList.toggle('show');
+    }
+
+    async function fetchOrders() {
+        try {
+            const response = await fetch('auth.php?action=history');
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                renderOrders(result.data);
+            } else {
+                document.getElementById('orders-list').innerHTML = `
+                    <div class="empty-orders">
+                        <h3>Please Log In</h3>
+                        <p>You need to be logged in to view your order history.</p>
+                        <a href="account.html" class="btn" style="display:inline-block; margin-top:20px;">Login Now</a>
+                    </div>
+                `;
+            }
+        } catch (error) {
+            console.error('Error fetching orders:', error);
+            document.getElementById('orders-list').innerHTML = '<p style="color:red; text-align:center;">Failed to load orders. Please try again later.</p>';
+        }
+    }
+
+    function renderOrders(orders) {
+        const list = document.getElementById('orders-list');
+        if (orders.length === 0) {
+            list.innerHTML = `
+                <div class="empty-orders">
+                    <h3>No orders yet!</h3>
+                    <p>Looks like you haven't ordered anything yet. Sweeten your day with our cakes!</p>
+                    <a href="cakes.html" class="btn" style="display:inline-block; margin-top:20px;">Explore Cakes</a>
+                </div>
+            `;
+            return;
+        }
+
+        list.innerHTML = '';
+        orders.forEach(order => {
+            const statusClass = `status-${order.status.toLowerCase()}`;
+            const canCancel = order.status === 'Pending';
+            
+            list.innerHTML += `
+                <div class="order-card">
+                    <div class="order-info">
+                        <span class="order-id">Order #${order.id}</span>
+                        <h3>${order.product}</h3>
+                        <p><strong>Quantity:</strong> ${order.quantity}</p>
+                        <p><strong>Date:</strong> ${new Date(order.order_date).toLocaleDateString()}</p>
+                        <p><strong>Address:</strong> ${order.address}</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="status-badge ${statusClass}">${order.status}</div>
+                        ${canCancel ? `<br><button class="cancel-btn" onclick="cancelOrder(${order.id})">Cancel Order</button>` : ''}
+                    </div>
+                </div>
+            `;
+        });
+
+        gsap.from(".order-card", {
+            opacity: 0,
+            x: -30,
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "power2.out"
+        });
+    }
+
+    async function cancelOrder(id) {
+        if (!confirm('Are you sure you want to cancel this order?')) return;
+
+        const formData = new FormData();
+        formData.append('action', 'cancel_order');
+        formData.append('order_id', id);
+
+        try {
+            const response = await fetch('auth.php', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                alert('Order cancelled successfully!');
+                fetchOrders(); // Refresh the list
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            alert('Failed to cancel order. Please try again.');
+        }
+    }
+
+    fetchOrders();
+</script>
+</body>
+</html>

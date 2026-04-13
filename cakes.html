@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cakes - Velvet Cravings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<header>
+    <h1 class="logo">VELVET CRAVINGS</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="nav-menu">
+        <a href="index.html"><span class="nav-icon">🏠</span>Home</a>
+        <a href="cakes.html"><span class="nav-icon">🎂</span>Cakes</a>
+        <a href="pastries.html"><span class="nav-icon">🧁</span>Pastries</a>
+        <a href="childs-corner.html"><span class="nav-icon">🧸</span>Child's Corner</a>
+        <a href="order.html"><span class="nav-icon">📝</span>Checkout</a>
+        <a href="my-orders.html"><span class="nav-icon">🛍️</span>My Orders</a>
+        
+        <div class="nav-item-dropdown">
+            <a href="account.html" id="account-link"><span class="nav-icon">👤</span>Account</a>
+            <div class="dropdown-menu" id="account-menu">
+                <!-- Dropdown items will be injected by auth-ui.js -->
+            </div>
+        </div>
+        
+        <a href="about.html"><span class="nav-icon">⭐</span>About</a>
+    </nav>
+</header>
+
+<h2 class="title">Our Cake Collection 🎂</h2>
+
+<div class="products">
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80" alt="Chocolate Truffle">
+        <h3>Chocolate Truffle</h3>
+        <p>Rich chocolate layered cake</p>
+        <p class="price">₹500</p>
+        <button class="add-to-cart-btn" data-name="Chocolate Truffle" data-price="500">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/RedVelvetCakehalfkg_grande.webp" alt="Red Velvet">
+        <h3>Red Velvet</h3>
+        <p>Soft velvet sponge with cream</p>
+        <p class="price">₹650</p>
+        <button class="add-to-cart-btn" data-name="Red Velvet" data-price="650">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&q=80" alt="Black Forest">
+        <h3>Black Forest</h3>
+        <p>Chocolate cake with cherries</p>
+        <p class="price">₹550</p>
+        <button class="add-to-cart-btn" data-name="Black Forest" data-price="550">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400&q=80" alt="Strawberry layered Cake">
+        <h3>Strawberry layered Cake</h3>
+        <p>Crunchy butterscotch flavor</p>
+        <p class="price">₹1100</p>
+        <button class="add-to-cart-btn" data-name="Strawberry layered Cake" data-price="1100">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=400&q=80" alt="Pineapple Cake">
+        <h3>Pineapple Cake</h3>
+        <p>Fresh pineapple cream cake</p>
+        <p class="price">₹450</p>
+        <button class="add-to-cart-btn" data-name="Pineapple Cake" data-price="450">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/vegan_chocolate-strawberry_Cake.webp" alt="Strawberry Cake">
+        <h3>Strawberry Cake</h3>
+        <p>Sweet strawberry flavored cake</p>
+        <p class="price">₹520</p>
+        <button class="add-to-cart-btn" data-name="Strawberry Cake" data-price="520">Add to Cart</button>
+    </div>
+
+    <!-- NEW CAKES ADDED -->
+
+    <div class="card">
+        <img src="image/1100x1100.jpg" alt="Butterscotch Cake">
+        <h3>Butterscotch Cake</h3>
+        <p>butterscotch cream with crunchy topping</p>
+        <p class="price">₹750</p>
+        <button class="add-to-cart-btn" data-name="Butterscotch Cake" data-price="750">Add to Cart</button>
+    </div>
+
+    
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1602351447937-745cb720612f?w=400&q=80" alt="Chocochips Cake">
+        <h3>Chocochips Cake</h3>
+        <p>Chocolate cake with Chocochips topping</p>
+        <p class="price">₹750</p>
+        <button class="add-to-cart-btn" data-name="Chocochips Cake" data-price="750">Add to Cart</button>
+    </div>
+     <div class="card">
+        <img src="image/item-667ab63d06469.webp" alt="Kitkat Cake">
+        <h3>Kitkat Cake</h3>
+        <p>Chocolate cake with Kitkat topping</p>
+        <p class="price">₹750</p>
+        <button class="add-to-cart-btn" data-name="Kitkat Cake" data-price="750">Add to Cart</button>
+    </div>
+       <div class="card">
+        <img src="image/0d9b1d4b946105b8cfb133de55064e36 (1).webp" alt="Dreamy Design Cake">
+        <h3>Dreamy Design  Cake</h3>
+        <p>Chocolate cake with balls topping</p>
+        <p class="price">₹750</p>
+        <button class="add-to-cart-btn" data-name="Dreamy Design  Cake" data-price="750">Add to Cart</button>
+    </div>
+      <div class="card">
+        <img src="image/dfb6d4e3eeb1f955779718664c65c90e.jpg" alt="Flower Rose Cake">
+        <h3> Flower Rose Cake</h3>
+        <p>Rose Cake with leaves</p>
+        <p class="price">₹750</p>
+        <button class="add-to-cart-btn" data-name="Flower Rose Cake" data-price="750">Add to Cart</button>
+    </div>
+      <div class="card">
+        <img src="image/pinkbutterflyCake_2400x.webp" alt="Pink Butterfly Cake">
+        <h3> Pink Butterfly Cake</h3>
+        <p>Designer Pink Butterfly Cake </p>
+        <p class="price">₹750</p>
+        <button class="add-to-cart-btn" data-name="Pink Butterfly  Cake" data-price="750">Add to Cart</button>
+    </div>
+        <div class="card">
+        <img src="image/blue-draped-bow-cake.png" alt="Blue Draped Bow Cake">
+        <h3> Blue Draped Bow Cake</h3>
+        <p> Dreamy with Blue Draped Bow Cake </p>
+        <p class="price">₹750</p>
+        <button class="add-to-cart-btn" data-name="Blue Draped Bow Cake" data-price="750">Add to Cart</button>
+    </div>
+    <div class="card">
+        <img src="image/ferrero.webp" alt="Ferrero Rocher Cake">
+        <h3>Ferrero Rocher Cake</h3>
+        <p>Premium Ferrero chocolate cake</p>
+        <p class="price">₹900</p>
+        <button class="add-to-cart-btn" data-name="Ferrero Rocher Cake" data-price="900">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/cake15.webp" alt="Mango Cake">
+        <h3>Mango Cake</h3>
+        <p>Tropical fresh mango sponge cake</p>
+        <p class="price">₹550</p>
+        <button class="add-to-cart-btn" data-name="Mango Cake" data-price="550">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/oreo-chocolate-layer-cake-recipe04.webp" alt="Oreo Cake">
+        <h3>Oreo Cake</h3>
+        <p>Cookie & cream loaded Oreo cake</p>
+        <p class="price">₹650</p>
+        <button class="add-to-cart-btn" data-name="Oreo Cake" data-price="650">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/fusionCakes_rasmalaicake.webp" alt="Rasmalai Cake">
+        <h3>Rasmalai Cake</h3>
+        <p>Fusion of traditional Indian sweets</p>
+        <p class="price">₹850</p>
+        <button class="add-to-cart-btn" data-name="Rasmalai Cake" data-price="850">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/Berry-Fruit-Ice-Cream-Cake.webp" alt="Berry Fruit Ice Cream Cake">
+        <h3>Berry Ice Cream Cake</h3>
+        <p>A refreshing berry flavored ice cream cake</p>
+        <p class="price">₹700</p>
+        <button class="add-to-cart-btn" data-name="Berry Ice Cream Cake" data-price="700">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/Ice-Cream-Cakes.webp" alt="Classic Ice Cream Cake">
+        <h3>Classic Ice Cream Cake</h3>
+        <p>Vanilla & chocolate ice cream goodness</p>
+        <p class="price">₹750</p>
+        <button class="add-to-cart-btn" data-name="Classic Ice Cream Cake" data-price="750">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/heart-shaped-fruit-cake-3-cake0742frui-BBB.webp" alt="Heart Shaped Fruit Cake">
+        <h3>Heart Fruit Cake</h3>
+        <p>Loaded with fresh seasonal fruits</p>
+        <p class="price">₹800</p>
+        <button class="add-to-cart-btn" data-name="Heart Fruit Cake" data-price="800">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/types-of-cake-carvel-chocolate-crunch-ice-cream-cake.webp" alt="Chocolate Crunch Ice Cream Cake">
+        <h3>Choco Crunch Cake</h3>
+        <p>Crispy chocolate layers with ice cream</p>
+        <p class="price">₹850</p>
+        <button class="add-to-cart-btn" data-name="Choco Crunch Cake" data-price="850">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/cSLR0oX.webp" alt="Mango Rose Cake">
+        <h3>Mango Rose Cake</h3>
+        <p>Custom baked for special events</p>
+        <p class="price">₹800</p>
+        <button class="add-to-cart-btn" data-name="Mango Rose Cake" data-price="800">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/230202_121618_424_398.webp" alt="Premium Velvet Cake">
+        <h3>Premium Velvet Cake</h3>
+        <p>Silky and luxurious velvet finish</p>
+        <p class="price">₹950</p>
+        <button class="add-to-cart-btn" data-name="Premium Velvet Cake" data-price="950">Add to Cart</button>
+    </div>
+     <div class="card">
+        <img src="image/067d45adf0864e1eab07c5ecf9d4b186.jpg" alt="Strawberry chocolate Cake">
+        <h3>Strawberry chocolate Cake</h3>
+        <p>Silky and luxurious velvet finish</p>
+        <p class="price">₹950</p>
+        <button class="add-to-cart-btn" data-name="Strawberry chocolate Cake" data-price="950">Add to Cart</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Velvet Cravings. All rights reserved.</p>
+</footer>
+
+<script src="cart.js"></script>
+<script src="auth-ui.js"></script>
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('nav-menu');
+        nav.classList.toggle('show');
+    }
+
+    gsap.from(".card", {
+        scrollTrigger: {
+            trigger: ".products",
+            start: "top 80%",
+        },
+        y: 100,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power3.out"
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastries - Velvet Cravings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1 class="logo">VELVET CRAVINGS</h1>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav id="nav-menu">
+            <a href="index.html"><span class="nav-icon">🏠</span>Home</a>
+            <a href="cakes.html"><span class="nav-icon">🎂</span>Cakes</a>
+            <a href="pastries.html"><span class="nav-icon">🧁</span>Pastries</a>
+            <a href="childs-corner.html"><span class="nav-icon">🧸</span>Child's Corner</a>
+            <a href="order.html"><span class="nav-icon">📝</span>Checkout</a>
+        <a href="my-orders.html"><span class="nav-icon">🛍️</span>My Orders</a>
+        
+        <div class="nav-item-dropdown">
+            <a href="account.html" id="account-link"><span class="nav-icon">👤</span>Account</a>
+            <div class="dropdown-menu" id="account-menu">
+                <!-- Dropdown items will be injected by auth-ui.js -->
+            </div>
+        </div>
+        
+        <a href="about.html"><span class="nav-icon">⭐</span>About</a>
+        </nav>
+    </header>
+
+    <h2 class="title">🧁 Delicious Pastries</h2>
+
+    <div class="products">
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=400&q=80" alt="Chocolate Pastry">
+            <h3>Chocolate Pastry</h3>
+            <p>Chocolate sponge with cream</p>
+            <p class="price">₹290</p>
+            <button class="add-to-cart-btn" data-name="Chocolate Pastry" data-price="290">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="image/milk-truffle-pastry_1.webp" alt="Black Forest Pastry">
+            <h3>Black Forest Pastry</h3>
+            <p>Chocolate sponge, cherry filling</p>
+            <p class="price">₹260</p>
+            <button class="add-to-cart-btn" data-name="Black Forest Pastry" data-price="260">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="image/Red Velvet Pastry.jpg" alt="Red Velvet Pastry">
+            <h3>Red Velvet Pastry</h3>
+            <p>red velvet sponge, cream cheese</p>
+            <p class="price">₹380</p>
+            <button class="add-to-cart-btn" data-name="Red Velvet Pastry" data-price="380">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="image/butterscotch-pastry.webp" alt="Butterscotch Pastry">
+            <h3>Butterscotch Pastry</h3>
+            <p>Caramel buttercream</p>
+            <p class="price">₹280</p>
+            <button class="add-to-cart-btn" data-name="Butterscotch Pastry" data-price="280">Add to Cart</button>
+        </div>
+
+        <!-- CUPCAKES FROM CHILDS CORNER -->
+        <div class="card">
+            <img src="image/image-618124-1717954874.jpeg" alt="Rainbow Pastry">
+            <h3>Rainbow Pastry</h3>
+            <p>Colorful vanilla cupcakes with sprinkles</p>
+            <p class="price">₹260</p>
+            <button class="add-to-cart-btn" data-name="Rainbow Pastry" data-price="260">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="image/unicorn-cupcakes5-700x1050.jpg" alt="Unicorn Cupcake">
+            <h3>Unicorn Cupcake</h3>
+            <p>Magical strawberry & vanilla cupcake</p>
+            <p class="price">₹320</p>
+            <button class="add-to-cart-btn" data-name="Unicorn Cupcake" data-price="120">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="image/pineapple pastry.jpg" alt="Pineapple Pastry">
+            <h3>Pineapple Pastry</h3>
+            <p>Vanilla sponge with fresh pines</p>
+            <p class="price">₹250</p>
+            <button class="add-to-cart-btn" data-name="Pineapple Pastry" data-price="250">Add to Cart</button>
+        </div>
+        <!-- NEW VARIETIES OF PASTRIES -->
+        <div class="card">
+            <img src="image/1259960071.jpg" alt="Strawberry Pastry">
+            <h3>Strawberry Pastry</h3>
+            <p>Rich strawberry glaze layer</p>
+            <p class="price">₹290</p>
+            <button class="add-to-cart-btn" data-name="Strawberry Pastry" data-price="290">Add to Cart</button>
+        </div>
+
+
+        <div class="card">
+            <img src="image/scrumptious-kit-kat-pastries-past0211choc-CCC_0.webp" alt="Kitkat Pastry">
+            <h3>Kitkat Pastry</h3>
+            <p>Rich Kitkat Pastry glaze layer</p>
+            <p class="price">₹220</p>
+            <button class="add-to-cart-btn" data-name="Kitkat Pastry" data-price="220">Add to Cart</button>
+        </div>
+        
+        <div class="card">
+            <img src="image/rasmali-pastry.jpg" alt="Rasmalai Pastry">
+            <h3>Rasmalai Pastry</h3>
+            <p>Rich Rasmalai Glaze Layer</p>
+            <p class="price">₹280</p>
+            <button class="add-to-cart-btn" data-name="Rasmalai Pastry" data-price="280">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="image/76724.jpeg" alt="Oreo Pastry">
+            <h3>Oreo Pastry</h3>
+            <p>Rich Oreo glaze layer</p>
+            <p class="price">₹250</p>
+            <button class="add-to-cart-btn" data-name="Oreo Pastry" data-price="250">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="image/Blueberry-Pastry.webp" alt="Blueberry Pastry">
+            <h3>Blueberry Pastry</h3>
+            <p>Creamy berry filled delight</p>
+            <p class="price">₹240</p>
+            <button class="add-to-cart-btn" data-name="Blueberry Pastry" data-price="240">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="image/image-8LBU86-1742210053.jpg" alt="Mango Pastry">
+            <h3>Mango Pastry</h3>
+            <p>Fresh mango slice pastry</p>
+            <p class="price">₹220</p>
+            <button class="add-to-cart-btn" data-name="Mango Pastry" data-price="220">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="image/unnamed.jpg" alt="Choco Lava Cup">
+            <h3>Choco Lava Cup</h3>
+            <p>Warm molten chocolate center</p>
+            <p class="price">₹250</p>
+            <button class="add-to-cart-btn" data-name="Choco Lava Cup" data-price="250">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="image/images.jpg" alt="Vanilla Swiss Roll">
+            <h3>Vanilla Swiss Roll</h3>
+            <p>Soft rolled vanilla cream cake</p>
+            <p class="price">₹85</p>
+            <button class="add-to-cart-btn" data-name="Vanilla Swiss Roll" data-price="85">Add to Cart</button>
+        </div>
+
+        <!-- 7 NEW PREMIUM PASTRIES (WITH ONLINE IMAGES) -->
+
+        <div class="card">
+            <img src="image/Mango_Pastry_copy_227358.jpg" alt="Mango Delight">
+            <h3>Mango Delight</h3>
+            <p>Fresh alphonso mango mousse</p>
+            <p class="price">₹280</p>
+            <button class="add-to-cart-btn" data-name="Mango Delight" data-price="280">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=400&q=80" alt="Salted Caramel">
+            <h3>Salted Caramel</h3>
+            <p>Sweet & salty caramel perfection</p>
+            <p class="price">₹310</p>
+            <button class="add-to-cart-btn" data-name="Salted Caramel" data-price="310">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="image/Lemon-Bars_2.jpg" alt="Lemon Zest">
+            <h3>Lemon Zest Pastry</h3>
+            <p>Zesty lemon curd filled sponge</p>
+            <p class="price">₹240</p>
+            <button class="add-to-cart-btn" data-name="Lemon Zest Pastry" data-price="240">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&q=80" alt="Hazelnut Praline">
+            <h3>Hazelnut Praline</h3>
+            <p>Crunchy hazelnut & chocolate</p>
+            <p class="price">₹340</p>
+            <button class="add-to-cart-btn" data-name="Hazelnut Praline" data-price="340">Add to Cart</button>
+        </div>
+
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&q=80" alt="Berry Cheese pastry">
+            <h3>Berry Cheese pastry</h3>
+            <p>Baked cheese pastry with berry compote</p>
+            <p class="price">₹380</p>
+            <button class="add-to-cart-btn" data-name="Berry Cheese pastry" data-price="380">Add to Cart</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Velvet Cravings. All rights reserved.</p>
+    </footer>
+
+    <script src="cart.js"></script>
+<script src="auth-ui.js"></script>
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('show');
+        }
+
+        gsap.from(".card", {
+            scrollTrigger: {
+                trigger: ".products",
+                start: "top 80%",
+            },
+            y: 100,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out"
+        });
+    </script>
+</body>
+
+</html>

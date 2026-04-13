@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Velvet Cravings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<header>
+    <h1 class="logo">VELVET CRAVINGS</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="nav-menu">
+        <a href="index.html"><span class="nav-icon">🏠</span>Home</a>
+        <a href="cakes.html"><span class="nav-icon">🎂</span>Cakes</a>
+        <a href="pastries.html"><span class="nav-icon">🧁</span>Pastries</a>
+        <a href="childs-corner.html"><span class="nav-icon">🧸</span>Child's Corner</a>
+        <a href="order.html"><span class="nav-icon">📝</span>Checkout</a>
+        <a href="my-orders.html"><span class="nav-icon">🛍️</span>My Orders</a>
+    </nav>
+</header>
+
+<h2 class="title">Secure Checkout</h2>
+
+<div class="form-container">
+    <!-- Success Message Container -->
+    <div id="successMessage" style="display: none; text-align: center; padding: 40px; background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(214, 51, 132, 0.2); width: 95%; max-width: 500px; margin: 40px auto; border: 2px solid #fff0f6; animation: slideUp 0.6s ease-out;">
+        <div class="success-icon" style="font-size: 100px; margin-bottom: 20px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); animation: heartBeat 1.5s infinite;">🎂✨</div>
+        <h2 style="color: #d63384; margin-bottom: 15px; font-size: 32px; font-family: 'Pacifico', cursive;">Order Placed!</h2>
+        <p style="color: #666; font-size: 18px; margin-bottom: 30px; line-height: 1.6;">Yay! Your delicious treats are being prepared. 🥳<br>Check your WhatsApp for confirmation.</p>
+        <div style="background: #fff0f6; padding: 15px; border-radius: 12px; margin-bottom: 25px; border: 1px dashed #ff4da6;">
+            <p style="margin: 0; font-weight: 600; color: #ff4da6;">Redirecting to WhatsApp in <span id="countdown">5</span> seconds...</p>
+        </div>
+        <button id="waRedirectBtn" class="btn" style="width: 100%; font-size: 18px; padding: 15px;">Confirm on WhatsApp Now 📱</button>
+    </div>
+
+    <style>
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+    </style>
+
+    <!-- Order Form -->
+    <form id="orderForm">
+        
+        <div id="cart-summary" class="checkout-cart-summary" style="display:none;"></div>
+        
+        <div id="manual-item-input">
+            <label for="product">Item Name</label>
+            <input type="text" id="product" placeholder="Cake or Pastry name (e.g. Red Velvet Cake)">
+
+            <label for="qty">Quantity</label>
+            <input type="number" id="qty" value="1" min="1">
+        </div>
+
+        <label for="name">Customer Name *</label>
+        <input type="text" id="name" placeholder="Enter your full name" required minlength="3">
+
+        <label for="phone">Phone Number *</label>
+        <input type="tel" id="phone" placeholder="Enter your 10-digit number" pattern="[0-9]{10}" required title="Please enter a valid 10 digit phone number">
+
+        <label for="address">Delivery Address *</label>
+        <textarea id="address" rows="3" placeholder="Enter full delivery address" required></textarea>
+
+        <button type="submit" class="btn" id="submitBtn">Place Order</button>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2026 Velvet Cravings. All rights reserved.</p>
+</footer>
+
+<script src="cart.js"></script>
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('nav-menu');
+        nav.classList.toggle('show');
+    }
+
+    gsap.from("form", { scale: 0.9, opacity: 0, duration: 1, ease: "back.out(1.7)" });
+
+    // Pre-process Cart vs Direct Order
+    window.onload = function() {
+        // Pre-fill user details if logged in
+        fetch('auth.php?action=check')
+        .then(res => res.json())
+        .then(data => {
+            if(data.logged_in) {
+                document.getElementById('name').value = data.name;
+                document.getElementById('phone').value = data.phone;
+            }
+        });
+
+        const localCart = JSON.parse(localStorage.getItem('velvet_cart')) || [];
+        
+        // If there are items in the cart, show summary instead of manual item input
+        if (localCart.length > 0) {
+            document.getElementById('manual-item-input').style.display = 'none';
+            document.getElementById('cart-summary').style.display = 'block';
+            
+            let summaryHTML = '<h3>Order Summary</h3>';
+            let total = 0;
+            localCart.forEach(item => {
+                summaryHTML += `<p>✔️ ${item.name} (x${item.qty}) - ₹${item.price * item.qty}</p>`;
+                total += item.price * item.qty;
+            });
+            summaryHTML += `<h4>Total Amount: ₹${total}</h4>`;
+            
+            document.getElementById('cart-summary').innerHTML = summaryHTML;
+        } else {
+            // Check if URL passed a product
+            const urlParams = new URLSearchParams(window.location.search);
+            const productName = urlParams.get('product');
+            if (productName) {
+                document.getElementById('product').value = productName;
+            }
+        }
+    };
+
+    document.getElementById('orderForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        
+        const btn = document.getElementById('submitBtn');
+        const originalText = btn.innerText;
+        btn.innerText = "Processing...";
+        btn.disabled = true;
+
+        let name = document.getElementById('name').value.trim();
+        let phone = document.getElementById('phone').value.trim();
+        let address = document.getElementById('address').value.trim();
+        
+        let productString = "";
+        let totalQty = 0;
+        
+        const localCart = JSON.parse(localStorage.getItem('velvet_cart')) || [];
+        
+        if (localCart.length > 0) {
+            localCart.forEach(i => {
+                productString += `${i.name} (x${i.qty}), `;
+                totalQty += i.qty;
+            });
+            productString = productString.slice(0, -2); // remove last comma
+        } else {
+            productString = document.getElementById('product').value.trim() || 'Custom Order';
+            totalQty = document.getElementById('qty').value;
+        }
+
+        // Submit to Database via PHP
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('phone', phone);
+        formData.append('product', productString);
+        formData.append('qty', totalQty);
+        formData.append('address', address);
+
+        fetch('save_order.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Database success
+            handleOrderSuccess(name, phone, productString, address);
+        })
+        .catch(error => {
+            // Silently handle if database is not reachable (running as file instead of localhost)
+            console.log("Database not reachable, switching to direct WhatsApp mode.");
+            handleOrderSuccess(name, phone, productString, address);
+        });
+
+        function handleOrderSuccess(name, phone, productString, address) {
+            // Remove the form and show success message
+            document.getElementById('orderForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Formatting WhatsApp message
+            let message = `*Hello Velvet Cravings!*%0A%0A*New Order Received!* 🎂%0A%0A`;
+            message += `👤 *Name:* ${name}%0A`;
+            message += `📞 *Phone:* ${phone}%0A`;
+            message += `🛒 *Items:* ${productString}%0A`;
+            message += `📍 *Address:* ${address}%0A%0A`;
+            message += `_Please confirm my order. Thank you!_ ✨`;
+
+            let waNumber = "917879280127"; 
+            let waLink = `https://wa.me/${waNumber}?text=${message}`;
+            
+            // Allow manual redirect
+            document.getElementById('waRedirectBtn').onclick = function() {
+                window.open(waLink, '_blank');
+                window.location.href = "index.html";
+            };
+
+            // Countdown logic
+            let seconds = 5;
+            const countdownEl = document.getElementById('countdown');
+            const interval = setInterval(() => {
+                seconds--;
+                countdownEl.innerText = seconds;
+                if(seconds <= 0) {
+                    clearInterval(interval);
+                    window.open(waLink, '_blank'); 
+                    window.location.href = "index.html"; 
+                }
+            }, 1000);
+
+            // Reset cart
+            localStorage.removeItem('velvet_cart');
+        }
+    });
+</script>
+
+</body>
+</html>

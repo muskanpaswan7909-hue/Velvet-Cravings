@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Child's Corner - Velvet Cravings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<header>
+    <h1 class="logo">VELVET CRAVINGS</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="nav-menu">
+        <a href="index.html"><span class="nav-icon">🏠</span>Home</a>
+        <a href="cakes.html"><span class="nav-icon">🎂</span>Cakes</a>
+        <a href="pastries.html"><span class="nav-icon">🧁</span>Pastries</a>
+        <a href="childs-corner.html"><span class="nav-icon">🧸</span>Child's Corner</a>
+        <a href="order.html"><span class="nav-icon">📝</span>Checkout</a>
+        <a href="my-orders.html"><span class="nav-icon">🛍️</span>My Orders</a>
+        <a href="account.html"><span class="nav-icon">👤</span>Account</a>
+        <a href="about.html"><span class="nav-icon">⭐</span>About</a>
+    </nav>
+</header>
+
+<h2 class="title">🎈 Child's Corner 🧸</h2>
+<p style="color:#666; font-size:18px; margin-bottom: 30px;">Fun, colorful, and delicious treats for the little ones!</p>
+
+<div class="products">
+
+    <div class="card">
+        <img src="image/0d571d1f2f4a913b49d0d7702ba6a4cb.webp" alt="cartoon cakes">
+        <h3>Cartoon cakes</h3>
+        <p>Cartoon cake with sprinkles</p>
+        <p class="price">₹600</p>
+        <button class="add-to-cart-btn" data-name="Cartoon cakes" data-price="600">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/102964.webp" alt="Sinchane cake">
+        <h3>Sinchane cake</h3>
+        <p>child cartoon cake</p>
+        <p class="price">₹650</p>
+        <button class="add-to-cart-btn" data-name="Sinchane cake" data-price="650">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/17b090bf8cd10e129b9720a96c41fe6f.webp" alt="Tom&Jerry">
+        <h3>Tom&Jerry cake</h3>
+        <p>Crunchy, chewy fruit flavored macarons</p>
+        <p class="price">₹800</p>
+        <button class="add-to-cart-btn" data-name="Tom&Jerry Cake" data-price="800">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/3c92aff4aca619b833b4c2561f682c71.webp" alt="Doraemon cake">
+        <h3>Doraemon cake</h3>
+        <p>Magical strawberry & vanilla cupcake</p>
+        <p class="price">₹620</p>
+        <button class="add-to-cart-btn" data-name="Doraemon Cake" data-price="620">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/7e377959b4bdd334834a0957d3993dc4.webp" alt="Daisy DuckCake">
+        <h3>Daisy DuckCake</h3>
+        <p>A fun cake for little champions</p>
+        <p class="price">₹550</p>
+        <button class="add-to-cart-btn" data-name="Daisy DuckCake" data-price="550">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/pikachu-cake-gurgaon-bakers.jpg" alt="Pikachu Cake">
+        <h3>Pikachu Cake</h3>
+        <p>Your child's favorite cartoon printed</p>
+        <p class="price">₹500</p>
+        <button class="add-to-cart-btn" data-name="Pikachu Cake" data-price="500">Add to Cart</button>
+    </div>
+
+    <!-- CARTOON CAKES -->
+    <div class="card">
+        <img src="image/sahib-spiderman-light-up-cake_bb656f07-ef3f-4fa6-b530-c5e800e7eb3e.webp" alt="Spider-Man Theme Cake">
+        <h3>Spider-Man Cake</h3>
+        <p>Action-packed red & blue superhero cake</p>
+        <p class="price">₹850</p>
+        <button class="add-to-cart-btn" data-name="Spider-Man Cake" data-price="850">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/cb08cd31f068a341dd008bad1757d952.jpg" alt="Barbie Doll Cake">
+        <h3>Barbie Doll Cake</h3>
+        <p>Beautiful princess gown cream cake</p>
+        <p class="price">₹950</p>
+        <button class="add-to-cart-btn" data-name="Barbie Doll Cake" data-price="950">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/59806d4844e3871322151aacc5353fbd.jpg" alt="Mickey Mouse Cake">
+        <h3>Mickey Mouse Cake</h3>
+        <p>Classic Disney theme chocolate cake</p>
+        <p class="price">₹800</p>
+        <button class="add-to-cart-btn" data-name="Mickey Mouse Cake" data-price="800">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/BE2283F2-748B-477F-B8EE-C306325468E8.webp" alt="Peppa Pig Cake">
+        <h3>Peppa Pig Cake</h3>
+        <p>Cute pink strawberry flavor party cake</p>
+        <p class="price">₹750</p>
+        <button class="add-to-cart-btn" data-name="Peppa Pig Cake" data-price="750">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/405a76d2fd8f818a20edbaa47de9645a.jpg" alt="Frozen theme Cake">
+        <h3>Frozen theme Cake</h3>
+        <p>Fun frozen theme Blueberry cake</p>
+        <p class="price">₹850</p>
+        <button class="add-to-cart-btn" data-name="Frozen theme Cake" data-price="850">Add to Cart</button>
+    </div>
+
+    <div class="card">
+        <img src="image/533696dfa736c4dabd925f167e2250c3.jpg" alt="Panda Cake">
+        <h3>Panda Cake</h3>
+        <p>Cute Panda Cartoon Cake</p>
+        <p class="price">₹900</p>
+        <button class="add-to-cart-btn" data-name="Panda Cake" data-price="1000">Add to Cart</button>
+    </div>
+       <div class="card">
+        <img src="image/Blue-Sonic-Cake.webp" alt="Sonic Cake">
+        <h3>Sonic Cake</h3>
+        <p>Ultimate superhero team celebration</p>
+        <p class="price">₹700</p>
+        <button class="add-to-cart-btn" data-name="Sonic Cake" data-price="700">Add to Cart</button>
+    </div>
+     <div class="card">
+        <img src="image/bf264cd9f3b261a2f9781e4384b36d61.jpg" alt="Minimouse Cake">
+        <h3>Minimouse Cake</h3>
+        <p>Cartoon Cake With Sprinkles</p>
+        <p class="price">₹700</p>
+        <button class="add-to-cart-btn" data-name="Minimouse Cake" data-price="700">Add to Cart</button>
+    </div>
+       <div class="card">
+        <img src="image/tiger-theme-cake-300x300.webp" alt="Lion Cake">
+        <h3>Lion Cake</h3>
+        <p>Ultimate superhero team celebration</p>
+        <p class="price">₹500</p>
+        <button class="add-to-cart-btn" data-name="Lion Cake" data-price="500">Add to Cart</button>
+    </div>
+        <div class="card">
+        <img src="image/Motu-Patlu-Cake-Design.webp" alt="Motu Patlu Cake">
+        <h3>Motu Patlu Cake</h3>
+        <p>Motu Patlu Cartoon Cake</p>
+        <p class="price">₹500</p>
+        <button class="add-to-cart-btn" data-name="Motu Patlu Cake" data-price="500">Add to Cart</button>
+    </div>
+      <div class="card">
+        <img src="image/ef0c4a77b50bc618a2412737131b3c2f.jpg" alt="Masha&Bear Cake">
+        <h3>Masha&Bear Cake</h3>
+        <p>Fun Masha&Bear with celebration</p>
+        <p class="price">₹500</p>
+        <button class="add-to-cart-btn" data-name="Masha&Bear Cake" data-price="500">Add to Cart</button>
+    </div>
+       <div class="card">
+        <img src="image/hello-kitty-cake-ideas-2.jpg" alt="Kitty Cake">
+        <h3>Kitty Cake</h3>
+        <p>Hello Kitty Cake with celebration</p>
+        <p class="price">₹500</p>
+        <button class="add-to-cart-btn" data-name="Kitty Cake" data-price="500">Add to Cart</button>
+    </div>
+      <div class="card">
+        <img src="image/ca1e79d9334ab934455006669daf58cc.jpg" alt="Monkey Cake">
+        <h3>Monkey Cake</h3>
+        <p>Cute Monkey Cake With celebration</p>
+        <p class="price">₹500</p>
+        <button class="add-to-cart-btn" data-name="Monkey Cake" data-price="500">Add to Cart</button>
+    </div>
+       <div class="card">
+        <img src="image/SHC-6-scaled.jpg" alt="Avengers Cake">
+        <h3>Avengers Theme Cake</h3>
+        <p>Ultimate superhero team celebration</p>
+        <p class="price">₹500</p>
+        <button class="add-to-cart-btn" data-name="Avengers Theme Cake" data-price="500">Add to Cart</button>
+    </div>
+
+<footer>
+    <p>&copy; 2026 Velvet Cravings. All rights reserved.</p>
+</footer>
+
+<script src="cart.js"></script>
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('nav-menu');
+        nav.classList.toggle('show');
+    }
+
+    gsap.from(".card", {
+        scrollTrigger: {
+            trigger: ".products",
+            start: "top 80%",
+        },
+        y: 100,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power3.out"
+    });
+</script>
+</body>
+</html>

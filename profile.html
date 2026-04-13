@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Velvet Cravings</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+<header>
+    <h1 class="logo">VELVET CRAVINGS</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="nav-menu">
+        <a href="index.html"><span class="nav-icon">🏠</span>Home</a>
+        <a href="cakes.html"><span class="nav-icon">🎂</span>Cakes</a>
+        <a href="pastries.html"><span class="nav-icon">🧁</span>Pastries</a>
+        <a href="order.html"><span class="nav-icon">📝</span>Checkout</a>
+        <a href="my-orders.html"><span class="nav-icon">🛍️</span>My Orders</a>
+        
+        <div class="nav-item-dropdown">
+            <a href="account.html" id="account-link"><span class="nav-icon">👤</span>Account</a>
+            <div class="dropdown-menu" id="account-menu">
+                <!-- Dropdown injected by auth-ui.js -->
+            </div>
+        </div>
+        <a href="about.html"><span class="nav-icon">⭐</span>About</a>
+    </nav>
+</header>
+
+<div class="profile-container" style="max-width: 1000px; margin: 50px auto; padding: 20px; display: flex; gap: 30px; flex-wrap: wrap;">
+    
+    <!-- Sidebar -->
+    <div class="profile-sidebar" style="flex: 1; min-width: 250px; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div style="width: 80px; height: 80px; background: #fff0f6; color: #ff4da6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 40px; margin: 0 auto 15px;">👤</div>
+            <h3 id="user_display_name" style="color: #333;">Welcome!</h3>
+            <p style="color: #888; font-size: 14px;">Member since 2026</p>
+        </div>
+
+        <nav style="display: flex; flex-direction: column; gap: 10px; width: 100%; align-items: flex-start;">
+            <a href="profile.html" style="color: #ff4da6; background: #fff0f6; border-radius: 10px; display: flex; align-items: center; gap: 10px; padding: 12px 15px; width: 100%; text-decoration: none; font-weight: 600;">👤 My Profile</a>
+            <a href="my-orders.html" style="color: #555; background: #f9f9f9; border-radius: 10px; display: flex; align-items: center; gap: 10px; padding: 12px 15px; width: 100%; text-decoration: none; font-weight: 500;">🛍️ My Orders</a>
+            <a href="index.html" style="color: #555; background: #f9f9f9; border-radius: 10px; display: flex; align-items: center; gap: 10px; padding: 12px 15px; width: 100%; text-decoration: none; font-weight: 500;">🏠 Back to Home</a>
+            <div style="height: 1px; background: #eee; margin: 10px 0; width: 100%;"></div>
+            <a href="#" id="logoutBtn" style="color: #dc3545; background: #fff5f5; border-radius: 10px; display: flex; align-items: center; gap: 10px; padding: 12px 15px; width: 100%; text-decoration: none; font-weight: 500;">🚪 Logout Account</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="profile-main" style="flex: 3; min-width: 350px;">
+        
+        <!-- Header Banner -->
+        <div style="background: linear-gradient(135deg, #ff4da6, #ffb3d9); padding: 40px; border-radius: 20px; color: white; margin-bottom: 30px; position: relative; overflow: hidden; box-shadow: 0 10px 20px rgba(255, 77, 166, 0.2);">
+            <div style="position: relative; z-index: 2;">
+                <h2 style="font-family: 'Pacifico', cursive; font-size: 32px; margin-bottom: 5px;" id="banner_name">Hello, Friend!</h2>
+                <p style="opacity: 0.9;">Manage your personal information and track your sweet orders.</p>
+            </div>
+            <div style="position: absolute; right: -20px; top: -20px; font-size: 150px; opacity: 0.1; transform: rotate(-15deg);">🍰</div>
+        </div>
+
+        <!-- Personal Info Card -->
+        <div class="profile-card" style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h3 style="color: #d63384; font-size: 22px;">Personal Information ✨</h3>
+                <button class="btn" style="padding: 8px 15px; font-size: 13px;">Edit Profile</button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+                <div class="info-item">
+                    <span style="display: block; color: #888; font-size: 13px; margin-bottom: 5px;">Full Name</span>
+                    <strong id="user_full_name" style="font-size: 16px; color: #333;">-</strong>
+                </div>
+                <div class="info-item">
+                    <span style="display: block; color: #888; font-size: 13px; margin-bottom: 5px;">Email Address</span>
+                    <strong id="user_email" style="font-size: 16px; color: #333;">-</strong>
+                </div>
+                <div class="info-item">
+                    <span style="display: block; color: #888; font-size: 13px; margin-bottom: 5px;">Phone Number</span>
+                    <strong id="user_phone" style="font-size: 16px; color: #333;">-</strong>
+                </div>
+                <div class="info-item">
+                    <span style="display: block; color: #888; font-size: 13px; margin-bottom: 5px;">Profile Status</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="width: 10px; height: 10px; background: #28a745; border-radius: 50%; display: inline-block;"></span>
+                        <strong style="color: #28a745;">Active</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer style="margin-top: 50px;">
+    <p>&copy; 2026 Velvet Cravings. All rights reserved.</p>
+</footer>
+
+<script src="cart.js"></script>
+<script src="auth-ui.js"></script>
+<script>
+    function toggleMenu() {
+        const nav = document.getElementById('nav-menu');
+        nav.classList.toggle('show');
+    }
+
+    // Load Profile Data
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('auth.php?action=check')
+        .then(res => res.json())
+        .then(data => {
+            if(!data.logged_in) {
+                window.location.href = 'account.html';
+                return;
+            }
+
+            document.getElementById('user_display_name').innerText = data.name;
+            document.getElementById('banner_name').innerText = "Hello, " + data.name.split(' ')[0] + "!";
+            document.getElementById('user_full_name').innerText = data.name;
+            document.getElementById('user_email').innerText = data.email;
+            document.getElementById('user_phone').innerText = data.phone;
+
+            // GSAP Animations
+            gsap.from(".profile-sidebar", { x: -50, opacity: 0, duration: 1, ease: "power3.out" });
+            gsap.from(".profile-main", { x: 50, opacity: 0, duration: 1, ease: "power3.out" });
+            gsap.from(".info-item", { y: 20, opacity: 0, duration: 0.8, stagger: 0.1, delay: 0.5 });
+        });
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        fetch('auth.php?action=logout')
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === 'success') {
+                window.location.href = 'index.html';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

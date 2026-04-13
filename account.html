@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Velvet Cravings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1 class="logo">VELVET CRAVINGS</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="nav-menu">
+        <a href="index.html" class="active"><span class="nav-icon">🏠</span>Home</a>
+        <a href="cakes.html"><span class="nav-icon">🎂</span>Cakes</a>
+        <a href="pastries.html"><span class="nav-icon">🧁</span>Pastries</a>
+        <a href="childs-corner.html"><span class="nav-icon">🧸</span>Child's Corner</a>
+        <a href="order.html"><span class="nav-icon">📝</span>Checkout</a>
+        <a href="my-orders.html"><span class="nav-icon">🛍️</span>My Orders</a>
+        
+        <div class="nav-item-dropdown">
+            <a href="account.html" id="account-link"><span class="nav-icon">👤</span>Account</a>
+            <div class="dropdown-menu" id="account-menu">
+                <!-- Dropdown items will be injected by auth-ui.js -->
+            </div>
+        </div>
+        
+        <a href="about.html"><span class="nav-icon">⭐</span>About</a>
+    </nav>
+</header>
+
+<div class="account-box">
+    <div class="auth-tabs" id="authTabs">
+        <div class="auth-tab active" data-target="loginSection">Login</div>
+        <div class="auth-tab" data-target="regSection">Register</div>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="loginSection" class="form-toggle-section active">
+        <form id="loginForm" style="width:100%; border:none; padding:0; box-shadow:none;">
+            <h3 style="margin-bottom:20px; color:#d63384;">Login</h3>
+            <label>Email Address</label>
+            <input type="email" id="log_email" placeholder="Email Address" required>
+            <label>Password</label>
+            <input type="password" id="log_pass" placeholder="Password" required>
+            <button type="submit" class="btn" style="width: 100%; margin-top:20px;">Sign In</button>
+        </form>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="regSection" class="form-toggle-section">
+        <form id="regForm" style="width:100%; border:none; padding:0; box-shadow:none;">
+            <h3 style="margin-bottom:20px; color:#d63384;">Create Account</h3>
+            <label>Full Name</label>
+            <input type="text" id="reg_name" placeholder="Full Name" required>
+            <label>Email Address</label>
+            <input type="email" id="reg_email" placeholder="Email Address" required>
+            <label>Phone Number</label>
+            <input type="tel" id="reg_phone" pattern="[0-9]{10}" placeholder="Phone Number" required>
+            <label>Password</label>
+            <input type="password" id="reg_pass" placeholder="Password" required minlength="6">
+            <button type="submit" class="btn" style="width: 100%; margin-top:20px;">Register</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 Velvet Cravings. All rights reserved.</p>
+</footer>
+<script src="cart.js"></script>
+<script src="auth-ui.js"></script>
+<script>
+    // Tab Toggling logic
+    document.querySelectorAll('.auth-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.form-toggle-section').forEach(s => s.classList.remove('active'));
+            
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.target).classList.add('active');
+        });
+    });
+
+    function toggleMenu() {
+        const nav = document.getElementById('nav-menu');
+        nav.classList.toggle('show');
+    }
+</script>
+<script>
+    // Login
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        const fd = new FormData();
+        fd.append('action', 'login');
+        fd.append('email', document.getElementById('log_email').value);
+        fd.append('password', document.getElementById('log_pass').value);
+        
+        fetch('auth.php', { method: 'POST', body: fd })
+        .then(res => res.json())
+        .then(data => {
+            if(data.status === 'success') {
+                window.location.href = 'profile.html';
+            } else {
+                alert(data.message);
+            }
+        });
+    });
+
+    // Register
+    document.getElementById('regForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        const fd = new FormData();
+        fd.append('action', 'register');
+        fd.append('name', document.getElementById('reg_name').value);
+        fd.append('email', document.getElementById('reg_email').value);
+        fd.append('phone', document.getElementById('reg_phone').value);
+        fd.append('password', document.getElementById('reg_pass').value);
+        
+        fetch('auth.php', { method: 'POST', body: fd })
+        .then(res => {
+            if(!res.ok) throw new Error("Server Error: Check XAMPP/Database");
+            return res.json();
+        })
+        .then(data => {
+            if(data.status === 'success') {
+                alert("Account created successfully!");
+                window.location.href = 'profile.html';
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(err => {
+            alert("Error Detail: " + err.message + ". Check if auth.php is uploaded in htdocs.");
+            console.error(err);
+        });
+    });
+</script>
+</body>
+</html>
